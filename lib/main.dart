@@ -1,4 +1,6 @@
+import 'package:AnimeSample/model/textstyle.dart';
 import 'package:flutter/material.dart';
+import 'package:AnimeSample/model/colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,12 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Anime Info',
+      title: 'Youtube',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'My Anime Info'),
+      home: MyHomePage(title: 'Youtube Info'),
     );
   }
 }
@@ -31,56 +33,66 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Colors.red,
+      color: Colors.black,
       home: DefaultTabController(
         length: 5,
         child: new Scaffold(
           body: TabBarView(
             children: [
               new Container(
-                color: Colors.red,
+                color: backgroundColor,
+                // child: ListView(children: getVideos(false),),
               ),
               new Container(
-                color: Colors.orange,
+                color: backgroundColor,
               ),
               new Container(
-                color: Colors.lightGreen,
+                color: backgroundColor,
+                child: ListView(
+                    // children: getVideos(true),
+                    ),
               ),
               new Container(
-                color: Colors.red,
+                color: backgroundColor,
               ),
               new Container(
-                color: Colors.blue,
+                color: backgroundColor,
               ),
             ],
           ),
           bottomNavigationBar: new TabBar(
-            tabs: [
-              Tab(
-                icon: new Icon(Icons.home),
-              ),
-              Tab(
-                icon: new Icon(Icons.info),
-              ),
-              Tab(
-                icon: new Icon(Icons.perm_identity),
-              ),
-              Tab(
-                icon: new Icon(Icons.add_circle),
-              ),
-              Tab(
-                icon: new Icon(Icons.settings),
-              )
-            ],
-            labelColor: Colors.brown,
-            unselectedLabelColor: Colors.blue,
-            indicatorSize: TabBarIndicatorSize.label,
-            indicatorPadding: EdgeInsets.all(5.0),
-            indicatorColor: Colors.red,
+            labelStyle: tabTextStyle,
+            tabs: tabList,
+            labelColor: tabBarSelectedIconsColor,
+            unselectedLabelColor: tabBarUnselectedIconsColor,
+            indicatorColor: Colors.transparent,
           ),
-          backgroundColor: Colors.black,
+          backgroundColor: tabBarColor,
         ),
       ),
     );
   }
+
+  List<Widget> tabList = [
+    Tab(
+      icon: new Icon(Icons.home),
+      text: "Home",
+    ),
+    Tab(
+      icon: new Icon(Icons.explore),
+      text: "Explore",
+    ),
+    Tab(
+      icon: new Icon(Icons.subscriptions),
+      text: "Subscriptions",
+    ),
+    Tab(
+      icon: new Icon(Icons.email),
+      text: "Inbox",
+    ),
+    Tab(
+      icon: new Icon(Icons.video_library),
+      text: "Library",
+    )
+  ];
 }
