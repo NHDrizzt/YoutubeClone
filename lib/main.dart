@@ -1,6 +1,10 @@
 import 'package:AnimeSample/model/textstyle.dart';
+import 'package:AnimeSample/model/videos.dart';
+import 'package:AnimeSample/view/avatarldocanal.dart';
+import 'package:AnimeSample/view/view_card.dart';
 import 'package:flutter/material.dart';
 import 'package:AnimeSample/model/colors.dart';
+import 'package:AnimeSample/model/canal.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,7 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               new Container(
                 color: backgroundColor,
-                // child: ListView(children: getVideos(false),),
+                child: ListView(
+                  children: puxaVideos(true),
+                ),
               ),
               new Container(
                 color: backgroundColor,
@@ -95,4 +101,54 @@ class _MyHomePageState extends State<MyHomePage> {
       text: "Library",
     )
   ];
+
+  Canal canal =
+      new Canal("Daquele Jeito", AssetImage("assets/profile/images.jpg"));
+
+  List<Widget> puxaVideos(bool inicio) {
+    List<Video> videos = fabricaDeVideo();
+    List<Widget> cards = [];
+    if (inicio) {
+      cards.add(Container(
+        color: backgroundColor,
+        height: 140,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Row(
+              children: [
+                AvatarCanal(canal: canal),
+              ],
+            ),
+            Divider(
+              color: tabBarSelectedIconsColor,
+            )
+          ],
+        ),
+      ));
+    } else {
+      cards.add(Container(
+        padding: EdgeInsets.only(top: 5, bottom: 5),
+        color: backgroundColor,
+        height: 50,
+      ));
+    }
+    for (Video x in videos) {
+      cards.add(VideoCard(
+        video: x,
+      ));
+    }
+    return cards;
+  }
+
+  List<Video> fabricaDeVideo() {
+    List<Video> vid = [];
+    vid.add(new Video(
+        AssetImage("assets/thumbs/maxresdefault.jpg"),
+        10000,
+        DateTime.now().subtract(new Duration(days: 400)),
+        "Olha o bixo vindo muleque",
+        canal));
+    return vid;
+  }
 }
