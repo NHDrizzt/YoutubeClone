@@ -1,6 +1,7 @@
 import 'package:AnimeSample/model/textstyle.dart';
 import 'package:AnimeSample/model/videos.dart';
 import 'package:AnimeSample/view/avatarldocanal.dart';
+import 'package:AnimeSample/view/sugtabs.dart';
 import 'package:AnimeSample/view/view_card.dart';
 import 'package:flutter/material.dart';
 import 'package:AnimeSample/model/colors.dart';
@@ -37,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Colors.black,
+      color: Colors.white,
       home: DefaultTabController(
         length: 5,
         child: new Scaffold(
@@ -45,18 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               new Container(
                 color: backgroundColor,
+                child: ListView(),
+              ),
+              new Container(
+                color: backgroundColor,
+              ),
+              new Container(
+                color: backgroundColor,
                 child: ListView(
                   children: puxaVideos(true),
                 ),
-              ),
-              new Container(
-                color: backgroundColor,
-              ),
-              new Container(
-                color: backgroundColor,
-                child: ListView(
-                    // children: getVideos(true),
-                    ),
               ),
               new Container(
                 color: backgroundColor,
@@ -82,23 +81,23 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> tabList = [
     Tab(
       icon: new Icon(Icons.home),
-      text: "Home",
+      text: "Início",
     ),
     Tab(
       icon: new Icon(Icons.explore),
-      text: "Explore",
+      text: "Explorar",
     ),
     Tab(
       icon: new Icon(Icons.subscriptions),
-      text: "Subscriptions",
+      text: "Inscrições",
     ),
     Tab(
       icon: new Icon(Icons.email),
-      text: "Inbox",
+      text: "Notificações",
     ),
     Tab(
       icon: new Icon(Icons.video_library),
-      text: "Library",
+      text: "Biblioteca",
     )
   ];
 
@@ -122,7 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Divider(
               color: tabBarSelectedIconsColor,
-            )
+            ),
+            SuggestionsTab(),
           ],
         ),
       ));
@@ -146,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
     vid.add(new Video(
         AssetImage("assets/thumbs/maxresdefault.jpg"),
         10000,
-        DateTime.now().subtract(new Duration(days: 400)),
+        DateTime.now().subtract(new Duration(days: 200)),
         "Olha o bixo vindo muleque",
         canal));
     return vid;

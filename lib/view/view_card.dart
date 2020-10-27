@@ -9,11 +9,11 @@ class VideoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 20),
       child: Column(
         children: <Widget>[
           Container(
-            height: 200,
+            height: 220,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: video.thumbnail,
@@ -40,7 +40,7 @@ class VideoCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    //Text(video.getVideoTitle(), style: videoTitleStyle),
+                    Text(video.getVideoTitle(), style: videoTitleStyle),
                     Container(
                       child: Row(
                         children: <Widget>[
@@ -52,13 +52,18 @@ class VideoCard extends StatelessWidget {
                             " ∙ ",
                             style: videoInfoStyle,
                           ),
-
-                          ///Text(video.getViewCount() + " views",style: videoInfoStyle,),
+                          Text(
+                            video.getViewCount() + " views",
+                            style: videoInfoStyle,
+                          ),
                           Text(
                             " ∙ ",
                             style: videoInfoStyle,
                           ),
-                          //Text(video.getTimeSinceUpload() + " ago",style: videoInfoStyle,),
+                          Text(
+                            video.getTimeSinceUpload() + " ago",
+                            style: videoInfoStyle,
+                          ),
                         ],
                       ),
                     )
